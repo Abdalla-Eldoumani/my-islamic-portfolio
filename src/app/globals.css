@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core Palette */
+  --bg-primary: #0A0F1C;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1A2235;
+
+  --gold-primary: #D4A843;
+  --gold-light: #E8C97A;
+  --gold-muted: #8B7A3E;
+  --gold-dark: #5C4E2A;
+
+  --text-primary: #F1EDE4;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+
+  --accent-teal: #2DD4BF;
+  --accent-emerald: #059669;
+
+  /* Geometric pattern base color */
+  --pattern-color: rgba(212, 168, 67, 0.04);
+  --pattern-stroke: rgba(212, 168, 67, 0.08);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(212, 168, 67, 0.3);
+    color: var(--text-primary);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gold-muted);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-primary);
+  }
+
+  /* Focus-visible ring for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--gold-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Gold geometric divider line */
+  .geometric-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--gold-muted) 20%,
+      var(--gold-primary) 50%,
+      var(--gold-muted) 80%,
+      transparent 100%
+    );
+    opacity: 0.4;
+  }
+
+  /* Glass card surface */
+  .glass-card {
+    background: linear-gradient(
+      145deg,
+      rgba(26, 34, 53, 0.6) 0%,
+      rgba(17, 24, 39, 0.8) 100%
+    );
+    border: 1px solid rgba(212, 168, 67, 0.1);
+    backdrop-filter: blur(12px);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(212, 168, 67, 0.25);
+  }
+
+  /* Gold text shimmer for headings */
+  .gold-shimmer {
+    background: linear-gradient(
+      135deg,
+      var(--gold-primary) 0%,
+      var(--gold-light) 40%,
+      var(--gold-primary) 60%,
+      var(--gold-muted) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtle noise texture overlay */
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Section with adequate spacing */
+  .portfolio-section {
+    @apply px-6 md:px-8 lg:px-12 py-section-sm md:py-section;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+}
+
+@layer utilities {
+  /* Animation delay utilities for stagger effects */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+  .animation-delay-700 { animation-delay: 700ms; }
+
+  /* Hide scrollbar but keep scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
