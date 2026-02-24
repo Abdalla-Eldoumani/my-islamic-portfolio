@@ -9,8 +9,17 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -77,13 +86,13 @@ export function Navbar() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="md:hidden overflow-hidden border-b border-gold-muted/10 bg-bg-primary/95 backdrop-blur-lg"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="px-6 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-body text-sm text-text-secondary hover:text-gold-primary transition-colors"
+                  className="py-3 font-body text-sm text-text-secondary hover:text-gold-primary transition-colors"
                 >
                   {link.label}
                 </a>
@@ -94,7 +103,7 @@ export function Navbar() {
                 rel="noopener noreferrer"
                 aria-label="GitHub profile"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 font-body text-sm text-text-secondary hover:text-gold-primary transition-colors"
+                className="flex items-center gap-2 py-3 font-body text-sm text-text-secondary hover:text-gold-primary transition-colors"
               >
                 <Github size={16} />
                 GitHub
