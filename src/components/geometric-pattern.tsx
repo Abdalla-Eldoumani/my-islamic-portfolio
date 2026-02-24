@@ -1,15 +1,9 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 export function GeometricPattern() {
   return (
     <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-      <motion.svg
-        animate={{ rotate: 360 }}
-        transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+      <svg
         viewBox="0 0 800 800"
-        className="w-[120%] h-[120%] opacity-[0.04]"
+        className="w-[120%] h-[120%] opacity-[0.04] animate-slow-spin"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
@@ -73,7 +67,7 @@ export function GeometricPattern() {
           fill="url(#islamic-geo)"
           mask="url(#radial-fade)"
         />
-      </motion.svg>
+      </svg>
     </div>
   );
 }
