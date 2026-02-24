@@ -53,7 +53,8 @@ const config: Config = {
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",
         "slide-up": "slideUp 0.6s ease-out forwards",
-        "slow-spin": "spin 60s linear infinite",
+        "slow-spin": "spin 120s linear infinite",
+        "bounce-subtle": "bounceSubtle 1.5s ease-in-out infinite",
         "pulse-gold": "pulseGold 3s ease-in-out infinite",
         "float": "float 6s ease-in-out infinite",
       },
@@ -73,6 +74,10 @@ const config: Config = {
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
+        },
+        bounceSubtle: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(6px)" },
         },
       },
       backgroundImage: {
