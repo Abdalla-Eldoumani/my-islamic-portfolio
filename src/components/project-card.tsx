@@ -2,18 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Chrome, Video, BookOpen, ScrollText, Star, Compass, Code, type LucideIcon } from "lucide-react";
+import { Github, ExternalLink, Chrome, Code } from "lucide-react";
 import type { Project } from "@/data/projects";
-
-const iconMap: Record<string, LucideIcon> = {
-  Video,
-  BookOpen,
-  ScrollText,
-  Star,
-  Compass,
-  Chrome,
-  Code,
-};
+import { projectIconMap } from "@/lib/icons";
 
 interface ProjectCardProps {
   project: Project;
@@ -24,7 +15,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false);
 
-  const IconComponent = iconMap[project.icon] ?? Code;
+  const IconComponent = projectIconMap[project.icon] ?? Code;
 
   return (
     <motion.article
@@ -82,7 +73,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
 
       {/* Stats */}
       {project.stats && (
-        <div className="flex gap-6 py-3 border-t border-b border-gold-muted/10">
+        <div className="flex flex-wrap gap-4 sm:gap-6 py-3 border-t border-b border-gold-muted/10">
           {project.stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div
@@ -115,7 +106,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
       </div>
 
       {/* Action links */}
-      <div className="flex gap-3 pt-2">
+      <div className="flex flex-wrap gap-3 pt-2">
         <a
           href={project.githubUrl}
           target="_blank"
