@@ -2,18 +2,9 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Github, ExternalLink, Chrome, Video, BookOpen, ScrollText, Star, Compass, Code, type LucideIcon } from "lucide-react";
+import { X, Github, ExternalLink, Chrome, Code } from "lucide-react";
 import type { Project } from "@/data/projects";
-
-const iconMap: Record<string, LucideIcon> = {
-  Video,
-  BookOpen,
-  ScrollText,
-  Star,
-  Compass,
-  Chrome,
-  Code,
-};
+import { projectIconMap } from "@/lib/icons";
 
 interface ProjectDetailModalProps {
   project: Project | null;
@@ -46,7 +37,7 @@ export function ProjectDetailModal({
     };
   }, [project, stableOnClose]);
 
-  const IconComponent = project ? (iconMap[project.icon] ?? Code) : null;
+  const IconComponent = project ? (projectIconMap[project.icon] ?? Code) : null;
 
   return (
     <AnimatePresence>
@@ -70,13 +61,13 @@ export function ProjectDetailModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-4 md:inset-12 lg:inset-24 z-50 glass-card rounded-2xl p-8 md:p-12 overflow-y-auto"
+            className="fixed inset-4 md:inset-12 lg:inset-24 z-50 glass-card rounded-2xl p-5 sm:p-6 md:p-8 lg:p-12 overflow-y-auto"
           >
             {/* Close button */}
             <button
               ref={closeRef}
               onClick={onClose}
-              className="absolute top-4 right-4 text-text-muted hover:text-text-primary transition-colors"
+              className="absolute top-2 right-2 p-2 text-text-muted hover:text-text-primary transition-colors"
               aria-label="Close dialog"
             >
               <X size={24} />
@@ -187,7 +178,7 @@ export function ProjectDetailModal({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View ${project.title} source on GitHub`}
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-tertiary text-text-primary hover:text-gold-primary hover:bg-gold-primary/10 font-body text-sm transition-all"
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-3 rounded-xl bg-bg-tertiary text-text-primary hover:text-gold-primary hover:bg-gold-primary/10 font-body text-sm transition-all"
                 >
                   <Github size={16} />
                   View Source
@@ -198,7 +189,7 @@ export function ProjectDetailModal({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`View ${project.title} live demo`}
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-body text-sm transition-all hover:bg-gold-primary/10"
+                    className="flex items-center justify-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-3 rounded-xl font-body text-sm transition-all hover:bg-gold-primary/10"
                     style={{ color: project.accentColor }}
                   >
                     <ExternalLink size={16} />
@@ -211,7 +202,7 @@ export function ProjectDetailModal({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`View ${project.title} on Chrome Web Store`}
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-body text-sm transition-all hover:bg-gold-primary/10"
+                    className="flex items-center justify-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-3 rounded-xl font-body text-sm transition-all hover:bg-gold-primary/10"
                     style={{ color: project.accentColor }}
                   >
                     <Chrome size={16} />
