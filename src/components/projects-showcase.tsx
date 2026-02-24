@@ -4,9 +4,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, categories } from "@/data/projects";
 import type { Project } from "@/data/projects";
+import dynamic from "next/dynamic";
 import { ProjectCard } from "./project-card";
-import { ProjectDetailModal } from "./project-detail-modal";
 import { SectionDivider } from "./section-divider";
+
+const ProjectDetailModal = dynamic(() => import("./project-detail-modal").then(mod => ({ default: mod.ProjectDetailModal })), {
+  ssr: false,
+});
 
 export function ProjectsShowcase() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -45,7 +49,7 @@ export function ProjectsShowcase() {
             onClick={() => setActiveCategory(cat.id)}
             aria-label={`Filter by ${cat.label}`}
             aria-pressed={activeCategory === cat.id}
-            className={`px-4 py-2 rounded-full font-body text-sm transition-all duration-300 ${
+            className={`px-4 py-2.5 min-h-[44px] rounded-full font-body text-sm transition-all duration-300 ${
               activeCategory === cat.id
                 ? "bg-gold-primary/20 text-gold-primary border border-gold-primary/40"
                 : "text-text-muted hover:text-text-secondary border border-transparent hover:border-gold-muted/20"
