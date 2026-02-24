@@ -1,5 +1,3 @@
-"use client";
-
 import { Github } from "lucide-react";
 
 export function Footer() {
@@ -31,7 +29,7 @@ export function Footer() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub profile"
-        className="inline-flex items-center gap-2 text-text-secondary hover:text-gold-primary transition-colors font-body text-sm mb-8"
+        className="inline-flex items-center gap-2 py-2 text-text-secondary hover:text-gold-primary transition-colors font-body text-sm mb-8"
       >
         <Github size={16} />
         github.com/Abdalla-Eldoumani
