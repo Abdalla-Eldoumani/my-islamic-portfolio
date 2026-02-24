@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 export function ScrollIndicator() {
@@ -11,12 +8,9 @@ export function ScrollIndicator() {
       aria-label="Scroll to about section"
     >
       <span className="font-body text-xs uppercase tracking-widest">Explore</span>
-      <motion.div
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-      >
+      <div className="animate-bounce-subtle">
         <ChevronDown size={20} />
-      </motion.div>
+      </div>
     </a>
   );
 }
