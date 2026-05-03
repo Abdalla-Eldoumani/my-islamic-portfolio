@@ -60,7 +60,7 @@ export function ProjectDetailModal({
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
             className="fixed inset-4 md:inset-12 lg:inset-24 z-50 glass-card rounded-2xl p-5 sm:p-6 md:p-8 lg:p-12 overflow-y-auto"
           >
             {/* Close button */}
