@@ -54,7 +54,7 @@ export default function NotFound() {
 
         <motion.h1
           variants={fadeUp}
-          className="font-display text-display-lg text-text-primary mb-4"
+          className="font-display text-display-lg font-semibold text-text-primary mb-4"
         >
           404
         </motion.h1>
