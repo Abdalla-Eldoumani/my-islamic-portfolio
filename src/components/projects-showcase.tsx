@@ -31,7 +31,7 @@ export function ProjectsShowcase() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <h2 className="font-display text-display-lg text-text-primary mb-4">
+        <h2 className="font-display text-display-lg font-semibold text-text-primary mb-4">
           Projects
         </h2>
         <SectionDivider />
