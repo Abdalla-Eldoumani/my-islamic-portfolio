@@ -36,8 +36,8 @@ export function ProjectsShowcase() {
         </h2>
         <SectionDivider />
         <p className="font-body text-text-secondary mt-6 max-w-xl mx-auto">
-          Each project is built with verified Islamic content from authenticated sources.
-          No AI-generated religious material — ever.
+          Religious content in every project is sourced from authenticated
+          texts. None of it is generated.
         </p>
       </motion.div>
 
