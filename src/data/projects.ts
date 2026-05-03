@@ -190,5 +190,5 @@ export const categories = [
   { id: "education", label: "Education" },
   { id: "seerah", label: "Seerah" },
   { id: "extension", label: "Extension" },
-  // { id: "tools", label: "Tools" },
+  { id: "tools", label: "Tools" },
 ] as const;
