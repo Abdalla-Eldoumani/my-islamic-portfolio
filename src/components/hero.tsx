@@ -37,7 +37,7 @@ export function Hero() {
         {/* Bismillah */}
         <motion.p
           variants={fadeUp}
-          className="font-arabic text-2xl md:text-3xl lg:text-4xl gold-shimmer mb-8"
+          className="font-arabic text-4xl md:text-5xl lg:text-6xl gold-shimmer mb-12"
           dir="rtl"
         >
           بسم الله الرحمن الرحيم
