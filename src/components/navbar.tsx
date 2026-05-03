@@ -32,7 +32,7 @@ export function Navbar() {
     <motion.nav
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: "easeOut" as const }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-bg-primary/80 backdrop-blur-lg border-b border-gold-muted/10"
@@ -83,7 +83,7 @@ export function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
             className="md:hidden overflow-hidden border-b border-gold-muted/10 bg-bg-primary/95 backdrop-blur-lg"
           >
             <div className="px-6 py-4 flex flex-col gap-1">
