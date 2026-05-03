@@ -18,7 +18,16 @@ export function Footer() {
       </svg>
 
       {/* Top divider */}
-      <div className="geometric-divider max-w-md mx-auto mb-12" />
+      <div className="geometric-divider max-w-md mx-auto mb-10" />
+
+      <p className="font-display text-base md:text-lg text-text-secondary italic max-w-xl mx-auto leading-relaxed">
+        &ldquo;And who is better in speech than one who invites to Allah and
+        does righteousness and says, &lsquo;Indeed, I am of the
+        Muslims.&rsquo;&rdquo;
+      </p>
+      <p className="font-body text-xs text-text-muted mt-2 mb-10">
+        Surah Fussilat 41:33 · Saheeh International translation
+      </p>
 
       <p className="font-display text-lg gold-shimmer mb-6">
         Built as Sadaqah Jariyah
