@@ -13,7 +13,7 @@ export function AboutSection() {
         transition={{ duration: 0.6 }}
         className="max-w-2xl mx-auto text-center"
       >
-        <h2 className="font-display text-display-lg text-text-primary mb-4">
+        <h2 className="font-display text-display-lg font-semibold text-text-primary mb-4">
           About
         </h2>
         <SectionDivider />
