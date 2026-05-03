@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Chrome, Code } from "lucide-react";
+import { Github, ExternalLink, Chrome } from "lucide-react";
 import type { Project } from "@/data/projects";
-import { projectIconMap } from "@/lib/icons";
 
 interface ProjectCardProps {
   project: Project;
@@ -13,10 +11,6 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
-  const [hovered, setHovered] = useState(false);
-
-  const IconComponent = projectIconMap[project.icon] ?? Code;
-
   return (
     <motion.article
       layout
@@ -24,31 +18,35 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -4 }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      className="glass-card rounded-2xl p-6 md:p-8 flex flex-col gap-4 transition-all duration-300 hover:shadow-card-hover group"
-      style={{
-        borderColor: hovered ? project.accentColor : undefined,
-      }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="relative bg-bg-secondary border border-gold-muted/25 hover:border-[var(--card-accent)] rounded-2xl p-6 md:p-8 flex flex-col gap-4 transition-colors duration-500 group"
+      style={
+        { "--card-accent": project.accentColor } as React.CSSProperties
+      }
     >
+      {/* Corner ornament (top-right). Eight-point mark, intensifies on hover. */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        className="absolute top-4 right-4 w-5 h-5 text-gold-muted opacity-40 group-hover:opacity-80 transition-opacity duration-500"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+      >
+        <rect x="6" y="6" width="12" height="12" />
+        <rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)" />
+      </svg>
+
       {/* Category badge */}
-      <div className="flex items-center justify-between">
-        <span
-          className="px-3 py-1 rounded-full text-xs font-body font-medium"
-          style={{
-            backgroundColor: `${project.accentColor}20`,
-            color: project.accentColor,
-          }}
-        >
-          {project.categoryLabel}
-        </span>
-        <IconComponent
-          size={20}
-          className="text-text-muted group-hover:text-gold-primary transition-colors"
-        />
-      </div>
+      <span
+        className="inline-block w-fit px-3 py-1 rounded-md text-xs font-body font-medium uppercase tracking-wider"
+        style={{
+          backgroundColor: `${project.accentColor}1A`,
+          color: project.accentColor,
+        }}
+      >
+        {project.categoryLabel}
+      </span>
 
       {/* Title & subtitle — clickable area */}
       <div
@@ -59,11 +57,17 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
           {project.title}
         </h3>
         {project.arabicTitle && (
-          <p className="font-arabic text-gold-muted text-sm mb-1" dir="rtl">
+          <p
+            className="font-arabic text-gold-muted text-sm mb-1"
+            lang="ar"
+            dir="rtl"
+          >
             {project.arabicTitle}
           </p>
         )}
-        <p className="font-body text-sm text-text-secondary">{project.subtitle}</p>
+        <p className="font-body text-sm text-text-secondary">
+          {project.subtitle}
+        </p>
       </div>
 
       {/* Description */}
@@ -73,7 +77,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
 
       {/* Stats */}
       {project.stats && (
-        <div className="flex flex-wrap gap-4 sm:gap-6 py-3 border-t border-b border-gold-muted/10">
+        <div className="flex flex-wrap gap-4 sm:gap-6 py-3 border-t border-b border-gold-muted/15">
           {project.stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div
@@ -82,7 +86,9 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
               >
                 {stat.value}
               </div>
-              <div className="font-body text-xs text-text-muted">{stat.label}</div>
+              <div className="font-body text-xs text-text-muted">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>
@@ -112,7 +118,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`View ${project.title} source on GitHub`}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-tertiary text-text-secondary hover:text-gold-primary hover:bg-gold-primary/10 font-body text-sm transition-all"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-tertiary text-text-secondary hover:text-gold-primary hover:bg-gold-primary/10 font-body text-sm transition-colors"
         >
           <Github size={14} />
           Source
@@ -123,7 +129,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View ${project.title} live demo`}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body transition-all hover:bg-gold-primary/10"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body transition-colors hover:bg-gold-primary/10"
             style={{ color: project.accentColor }}
           >
             <ExternalLink size={14} />
@@ -136,7 +142,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View ${project.title} on Chrome Web Store`}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body transition-all hover:bg-gold-primary/10"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body transition-colors hover:bg-gold-primary/10"
             style={{ color: project.accentColor }}
           >
             <Chrome size={14} />
@@ -146,7 +152,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
         {onSelect && (
           <button
             onClick={() => onSelect(project)}
-            className="ml-auto px-4 py-2 rounded-lg text-sm font-body text-text-muted hover:text-gold-primary hover:bg-gold-primary/10 transition-all"
+            className="ml-auto px-4 py-2 rounded-lg text-sm font-body text-text-muted hover:text-gold-primary hover:bg-gold-primary/10 transition-colors"
             aria-label={`View details for ${project.title}`}
           >
             Details
