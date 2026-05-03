@@ -47,6 +47,7 @@ export default function NotFound() {
         <motion.p
           variants={fadeUp}
           className="font-arabic text-xl gold-shimmer mb-6"
+          lang="ar"
           dir="rtl"
         >
           إنا لله وإنا إليه راجعون
