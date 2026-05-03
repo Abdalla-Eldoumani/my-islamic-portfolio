@@ -101,6 +101,7 @@ export function ProjectDetailModal({
                   {project.arabicTitle && (
                     <p
                       className="font-arabic text-gold-muted text-lg"
+                      lang="ar"
                       dir="rtl"
                     >
                       {project.arabicTitle}
