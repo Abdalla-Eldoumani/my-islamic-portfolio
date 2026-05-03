@@ -41,18 +41,18 @@ export function ProjectsShowcase() {
         </p>
       </motion.div>
 
-      {/* Category filter */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
+      {/* Category filter — cartouche-style markers */}
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
         {categories.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
             aria-label={`Filter by ${cat.label}`}
             aria-pressed={activeCategory === cat.id}
-            className={`px-4 py-2.5 min-h-[44px] rounded-full font-body text-sm transition-all duration-300 ${
+            className={`px-4 sm:px-5 py-2.5 min-h-[44px] rounded-md font-body text-xs uppercase tracking-[0.2em] transition-colors duration-300 border ${
               activeCategory === cat.id
-                ? "bg-gold-primary/20 text-gold-primary border border-gold-primary/40"
-                : "text-text-muted hover:text-text-secondary border border-transparent hover:border-gold-muted/20"
+                ? "border-gold-primary/60 bg-gold-primary/10 text-gold-primary"
+                : "border-gold-muted/25 text-text-muted hover:border-gold-muted/50 hover:text-text-secondary"
             }`}
           >
             {cat.label}
