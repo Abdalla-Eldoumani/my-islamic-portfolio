@@ -20,6 +20,25 @@ export function Footer() {
       {/* Top divider */}
       <div className="geometric-divider max-w-md mx-auto mb-10" />
 
+      {/* Hadith on beneficial people */}
+      <p
+        className="font-arabic text-lg md:text-xl text-text-primary leading-loose"
+        lang="ar"
+        dir="rtl"
+      >
+        أحب الناس إلى الله أنفعهم للناس
+      </p>
+      <p className="font-display text-base md:text-lg text-text-secondary italic max-w-xl mx-auto leading-relaxed mt-3">
+        &ldquo;The most beloved of people to Allah are those most beneficial
+        to people.&rdquo;
+      </p>
+      <p className="font-body text-xs text-text-muted mt-2 mb-8">
+        From Abdullah ibn Umar · Sahih, al-Silsilah al-Sahihah by al-Albani
+      </p>
+
+      <div className="geometric-divider max-w-xs mx-auto opacity-40 mb-8" />
+
+      {/* Quran 41:33 */}
       <p className="font-display text-base md:text-lg text-text-secondary italic max-w-xl mx-auto leading-relaxed">
         &ldquo;And who is better in speech than one who invites to Allah and
         does righteousness and says, &lsquo;Indeed, I am of the
