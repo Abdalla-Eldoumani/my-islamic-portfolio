@@ -128,7 +128,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "noor-guide",
+    id: "nour-guide",
     title: "Noor Guide",
     subtitle: "A learning path for new Muslims",
     description:
