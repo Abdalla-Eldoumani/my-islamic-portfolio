@@ -40,7 +40,7 @@ export function Hero() {
           className="font-arabic text-4xl md:text-5xl lg:text-6xl gold-shimmer mb-12 leading-[1.6] pb-2"
           dir="rtl"
         >
-          بسم الله الرحمن الرحيم
+          ﴾ بسم الله الرحمن الرحيم ﴿
         </motion.p>
 
         {/* Descriptive intro */}
