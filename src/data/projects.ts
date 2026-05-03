@@ -185,6 +185,34 @@ export const projects: Project[] = [
       { label: "Adhkar", value: "32" },
     ],
   },
+  {
+    id: "salaat-widget",
+    title: "Salaat Widget",
+    subtitle: "Desktop prayer-times widget that snaps to screen edges",
+    description:
+      "A cross-platform desktop prayer-times widget for Windows, macOS, and Linux. The Tauri/Rust backend plays the adhan and sends OS notifications even when the webview is unfocused; the React frontend handles the UI and the prayer-time calculations. Drag the widget within 40px of any screen edge and it snaps to a fitted layout: horizontal bar on top or bottom, vertical sidebar on left or right, compact floating in the centre. Distributed as native installers via GitHub Releases.",
+    features: [
+      "12 calculation methods (ISNA, MWL, Egyptian, Umm al-Qura, and nine others)",
+      "Two madhabs (Shafi, Hanafi) plus three high-latitude rules",
+      "Six adhan reciters: Makkah, Madinah, Al-Aqsa, Abdul Basit, Minshawi, Egypt",
+      "Edge-snap window manager with auto-reorientation between four layouts",
+      "Background audio and notifications via Rust (rodio + tauri-plugin-notification)",
+      "About 130 bundled cities with IP geolocation as a fallback",
+    ],
+    techStack: ["Tauri 2", "React", "TypeScript", "Tailwind CSS 4", "Rust", "adhan.js"],
+    category: "tools",
+    categoryLabel: "Tools · Desktop",
+    accentColor: "#10B981",
+    accentColorMuted: "#047857",
+    githubUrl: "https://github.com/Abdalla-Eldoumani/salaat-widget",
+    liveUrl: "https://github.com/Abdalla-Eldoumani/salaat-widget/releases",
+    icon: "Clock",
+    stats: [
+      { label: "Methods", value: "12" },
+      { label: "Reciters", value: "6" },
+      { label: "Platforms", value: "3" },
+    ],
+  },
 ];
 
 export const categories = [
