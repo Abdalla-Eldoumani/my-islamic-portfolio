@@ -44,24 +44,16 @@ export function Hero() {
           بسم الله الرحمن الرحيم
         </motion.p>
 
-        {/* Main heading */}
-        <motion.h1
-          variants={fadeUp}
-          className="font-display text-display-xl text-text-primary mb-8"
-        >
-          Islamic Software
-          <br />
-          Portfolio
-        </motion.h1>
-
-        {/* Subtitle */}
+        {/* Descriptive intro */}
         <motion.p
           variants={fadeUp}
-          className="font-body text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
+          className="font-body text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed"
         >
-          Building open-source tools for the Muslim community as{" "}
-          <span className="text-gold-primary italic">sadaqah jariyah</span> —
-          ongoing charity that continues to benefit others inshallah.
+          Seven open-source Islamic projects across Quran content, Tajweed,
+          the Prophet&rsquo;s life, the 99 Names of Allah, new-Muslim
+          guidance, a browser companion, and a desktop prayer tool.
+          Religious content is read-only, drawn from authenticated texts.
+          Built freely so that benefit may continue.
         </motion.p>
       </motion.div>
 
