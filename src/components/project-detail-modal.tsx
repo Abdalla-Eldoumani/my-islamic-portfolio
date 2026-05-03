@@ -78,7 +78,7 @@ export function ProjectDetailModal({
               {/* Header */}
               <div className="flex items-start gap-4 mb-8">
                 <div
-                  className="p-3 rounded-xl flex-shrink-0"
+                  className="p-3 rounded-xl shrink-0"
                   style={{ backgroundColor: `${project.accentColor}20` }}
                 >
                   {IconComponent && (
@@ -126,7 +126,7 @@ export function ProjectDetailModal({
                       className="flex gap-3 font-body text-sm text-text-secondary"
                     >
                       <span
-                        className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                        className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
                         style={{ backgroundColor: project.accentColor }}
                       />
                       {feature}
