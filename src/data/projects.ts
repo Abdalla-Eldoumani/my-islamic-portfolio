@@ -49,15 +49,15 @@ export const projects: Project[] = [
     title: "Tajweed Trainer",
     subtitle: "Interactive Quranic recitation rules",
     description:
-      "An interactive web application that teaches Tajweed rules through color-coded text, audio examples, and practice exercises. Covers nine learning modules including articulation points (Makharij), Noon Sakinah & Tanween, Meem Sakinah, Qalqalah, and elongation (Madd). All rules and Quranic examples are sourced from pre-verified JSON data — nothing AI-generated. Integrates with the Quran.com Foundation API for color-coded tajweed markup and the Al Quran Cloud API for verse audio.",
+      "An interactive web app that teaches Tajweed through colour-coded text, audio examples, and spaced-repetition quizzes. Nine modules cover everything from articulation points (Makharij) through elongation (Madd) and stop signs (Waqf). All rules and Quranic examples ship as pre-verified JSON; a verified flag at every accessor stops anything else from rendering. Tajweed colour markup comes from the Quran.com Foundation API; recitation audio comes from Al Quran Cloud.",
     features: [
-      "Nine structured learning modules with interactive quizzes",
-      "Color-coded tajweed markup following standard Mushaf conventions",
-      "Progress tracking with localStorage persistence",
-      "Reciter selection, playback speed, and dark mode settings",
-      "Arabic text with full tashkeel using Amiri Quran font",
+      "Nine modules: Makharij, Noon Sakinah, Meem Sakinah, Qalqalah, Madd, Laam, Raa, Tafkheem, Ghunnah, Waqf",
+      "270+ authored practice questions with Leitner spaced-repetition scheduling",
+      "604-page Madinan Mushaf reader with tap-to-play audio at every verse",
+      "Colour-coded tajweed markup pulled from the Quran.com Foundation API",
+      "Al-Husary pinned as default teaching reciter; full reciter list cached daily",
     ],
-    techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Quran.com API", "Al Quran Cloud API"],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Quran.com API", "Al Quran Cloud API"],
     category: "education",
     categoryLabel: "Quran · Education",
     accentColor: "#A78BFA",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     stats: [
       { label: "Modules", value: "9" },
       { label: "Rules", value: "30+" },
-      { label: "Quizzes", value: "Interactive" },
+      { label: "Questions", value: "270+" },
     ],
   },
   {
