@@ -179,7 +179,7 @@ export const projects: Project[] = [
     stats: [
       { label: "Reciters", value: "50+" },
       { label: "Hadith Books", value: "9" },
-      { label: "Adhkar", value: "26+" },
+      { label: "Adhkar", value: "32" },
     ],
   },
 ];
