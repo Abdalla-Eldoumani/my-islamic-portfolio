@@ -41,7 +41,7 @@ export function Hero() {
           lang="ar"
           dir="rtl"
         >
-          ﴾ بسم الله الرحمن الرحيم ﴿
+          ﴿ بسم الله الرحمن الرحيم ﴾
         </motion.p>
 
         {/* Descriptive intro */}
