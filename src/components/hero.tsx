@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { GeometricPattern } from "./geometric-pattern";
-import { ScrollIndicator } from "./scroll-indicator";
 
 export function Hero() {
   const stagger = {
@@ -55,16 +54,6 @@ export function Hero() {
           Religious content is read-only, drawn from authenticated texts.
           Built freely so that benefit may continue.
         </motion.p>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8"
-      >
-        <ScrollIndicator />
       </motion.div>
     </section>
   );
