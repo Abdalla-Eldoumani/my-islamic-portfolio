@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Home } from "lucide-react";
+import Link from "next/link";
 
 export default function NotFound() {
   const stagger = {
@@ -73,13 +74,13 @@ export default function NotFound() {
         </motion.p>
 
         <motion.div variants={fadeUp}>
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/10 text-gold-primary hover:bg-gold-primary/20 font-body text-sm transition-all border border-gold-primary/20 hover:border-gold-primary/40"
           >
             <Home size={16} />
             Return Home
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 
