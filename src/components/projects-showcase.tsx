@@ -61,21 +61,27 @@ export function ProjectsShowcase() {
       </div>
 
       {/* Project grid */}
-      <motion.div
-        layout
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-      >
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              onSelect={setSelectedProject}
-            />
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      {filteredProjects.length > 0 ? (
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                onSelect={setSelectedProject}
+              />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      ) : (
+        <p className="font-body text-text-muted text-sm text-center py-16">
+          Nothing in this category yet.
+        </p>
+      )}
 
       {/* Detail modal */}
       <ProjectDetailModal
