@@ -1,72 +1,72 @@
 export function GeometricPattern() {
+  // Single deliberate frontispiece. Centred on the hero, no tiling, no rotation.
+  // Concentric eight-point rosettes inside an octagonal frame, in the manner
+  // of Mamluk Quran illumination.
   return (
-    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
       <svg
         viewBox="0 0 800 800"
-        className="w-[120%] h-[120%] opacity-[0.04] animate-slow-spin"
+        className="w-[min(90vmin,800px)] h-[min(90vmin,800px)] opacity-[0.06]"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
         <defs>
-          <pattern
-            id="islamic-geo"
-            x="0"
-            y="0"
-            width="100"
-            height="100"
-            patternUnits="userSpaceOnUse"
-          >
-            <g
-              stroke="currentColor"
-              strokeWidth="0.5"
-              fill="none"
-              className="text-gold-primary"
-            >
-              {/* Outer octagon */}
-              <polygon points="50,5 79.3,20.7 95,50 79.3,79.3 50,95 20.7,79.3 5,50 20.7,20.7" />
-              {/* Inner star formed by two overlapping squares */}
-              <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" />
-              <rect x="20" y="20" width="60" height="60" />
-              {/* Smaller inner octagon */}
-              <polygon points="50,22 64.6,29.7 72,44 64.6,58.3 50,66 35.4,58.3 28,44 35.4,29.7" transform="translate(0,6)" />
-              {/* Center circle */}
-              <circle cx="50" cy="50" r="12" />
-              {/* Inner tiny circle */}
-              <circle cx="50" cy="50" r="5" />
-              {/* Cardinal connecting lines */}
-              <line x1="50" y1="5" x2="50" y2="38" />
-              <line x1="95" y1="50" x2="62" y2="50" />
-              <line x1="50" y1="95" x2="50" y2="62" />
-              <line x1="5" y1="50" x2="38" y2="50" />
-              {/* Diagonal cross-lines connecting octagon vertices */}
-              <line x1="79.3" y1="20.7" x2="20.7" y2="79.3" />
-              <line x1="20.7" y1="20.7" x2="79.3" y2="79.3" />
-              {/* Petal arcs between star points */}
-              <path d="M 50,5 Q 65,25 79.3,20.7" />
-              <path d="M 79.3,20.7 Q 75,40 95,50" />
-              <path d="M 95,50 Q 75,65 79.3,79.3" />
-              <path d="M 79.3,79.3 Q 60,75 50,95" />
-              <path d="M 50,95 Q 35,75 20.7,79.3" />
-              <path d="M 20.7,79.3 Q 25,60 5,50" />
-              <path d="M 5,50 Q 25,35 20.7,20.7" />
-              <path d="M 20.7,20.7 Q 40,25 50,5" />
-            </g>
-          </pattern>
-          {/* Radial fade mask */}
-          <radialGradient id="fade-mask" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="white" />
-            <stop offset="70%" stopColor="white" />
-            <stop offset="100%" stopColor="black" />
+          <radialGradient id="hero-frontispiece-mask" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stopColor="white" stopOpacity="1" />
+            <stop offset="65%" stopColor="white" stopOpacity="1" />
+            <stop offset="100%" stopColor="black" stopOpacity="1" />
           </radialGradient>
-          <mask id="radial-fade">
-            <rect width="800" height="800" fill="url(#fade-mask)" />
+          <mask id="hero-frontispiece-fade">
+            <rect width="800" height="800" fill="url(#hero-frontispiece-mask)" />
           </mask>
         </defs>
-        <rect
-          width="800"
-          height="800"
-          fill="url(#islamic-geo)"
-          mask="url(#radial-fade)"
-        />
+
+        <g
+          stroke="currentColor"
+          strokeWidth="0.7"
+          fill="none"
+          className="text-gold-primary"
+          mask="url(#hero-frontispiece-fade)"
+          transform="translate(400 400)"
+        >
+          {/* Outer ring: large octagon */}
+          <polygon points="0,-340 240,-240 340,0 240,240 0,340 -240,240 -340,0 -240,-240" />
+
+          {/* Outer eight-point star (two squares offset 45°) */}
+          <rect x="-260" y="-260" width="520" height="520" />
+          <rect x="-260" y="-260" width="520" height="520" transform="rotate(45)" />
+
+          {/* Mid octagon */}
+          <polygon points="0,-220 156,-156 220,0 156,156 0,220 -156,156 -220,0 -156,-156" />
+
+          {/* Inner eight-point star */}
+          <rect x="-130" y="-130" width="260" height="260" />
+          <rect x="-130" y="-130" width="260" height="260" transform="rotate(45)" />
+
+          {/* Inner octagon */}
+          <polygon points="0,-110 78,-78 110,0 78,78 0,110 -78,78 -110,0 -78,-78" />
+
+          {/* Concentric circles */}
+          <circle cx="0" cy="0" r="80" />
+          <circle cx="0" cy="0" r="44" />
+          <circle cx="0" cy="0" r="18" />
+
+          {/* Cardinal radial lines, halted before the centre */}
+          <line x1="0" y1="-340" x2="0" y2="-110" />
+          <line x1="0" y1="340" x2="0" y2="110" />
+          <line x1="-340" y1="0" x2="-110" y2="0" />
+          <line x1="340" y1="0" x2="110" y2="0" />
+
+          {/* Diagonal radial lines */}
+          <line x1="-240" y1="-240" x2="-78" y2="-78" />
+          <line x1="240" y1="-240" x2="78" y2="-78" />
+          <line x1="-240" y1="240" x2="-78" y2="78" />
+          <line x1="240" y1="240" x2="78" y2="78" />
+
+          {/* Innermost eight-point star */}
+          <rect x="-13" y="-13" width="26" height="26" />
+          <rect x="-13" y="-13" width="26" height="26" transform="rotate(45)" />
+        </g>
       </svg>
     </div>
   );
