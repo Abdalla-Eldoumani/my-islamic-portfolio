@@ -19,8 +19,7 @@ export function AboutSection() {
         <SectionDivider />
 
         <p className="mt-8 font-body text-text-secondary leading-relaxed">
-          This portfolio is the work of Abdalla Eldoumani, a Computer Science
-          student at the University of Calgary. The aim is{" "}
+          The aim of this portfolio is{" "}
           <span className="text-gold-primary italic">sadaqah jariyah</span>,
           work that may continue to benefit others by the mercy of Allah.
         </p>
