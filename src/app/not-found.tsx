@@ -15,7 +15,7 @@ export default function NotFound() {
           إنا لله وإنا إليه راجعون
         </p>
 
-        <h1 className="font-display text-display-lg font-semibold">404</h1>
+        <h1 className="font-display text-display-lg font-semibold lining-nums">404</h1>
         <p className="mt-2 font-display text-display-sm text-text-secondary">
           Page not found
         </p>
