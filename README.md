@@ -25,7 +25,7 @@ npm start
 ## Where things live
 
 - `src/data/projects.ts` holds every project card: title, description, figures, tech list and links. Edit it to change what the page says. Update the figures and links when a project changes.
-- `src/components/` holds the page sections. `projects-showcase.tsx` is the only client component, because it keeps the category filter state.
+- `src/components/` holds the page sections. `projects-section.tsx` is the only client component, because it keeps the category filter state.
 - `src/app/globals.css` defines the colours, type scale and light and dark themes. The theme follows the visitor's system setting.
 - `vercel.json` sets the security headers and the content security policy.
 
