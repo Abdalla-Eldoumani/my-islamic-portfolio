@@ -1,20 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { projects, categories } from "@/data/projects";
-import type { Project } from "@/data/projects";
-import dynamic from "next/dynamic";
 import { ProjectCard } from "./project-card";
 import { SectionDivider } from "./section-divider";
 
-const ProjectDetailModal = dynamic(() => import("./project-detail-modal").then(mod => ({ default: mod.ProjectDetailModal })), {
-  ssr: false,
-});
-
 export function ProjectsShowcase() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects =
     activeCategory === "all"
@@ -22,37 +14,34 @@ export function ProjectsShowcase() {
       : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="projects" className="portfolio-section">
-      {/* Section header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
-      >
-        <h2 className="font-display text-display-lg font-semibold text-text-primary mb-4">
-          Projects
-        </h2>
+    <section
+      id="projects"
+      className="mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-24"
+    >
+      <div className="mb-12 text-center">
+        <h2 className="font-display text-display-lg font-semibold">Projects</h2>
         <SectionDivider />
-        <p className="font-body text-text-secondary mt-6 max-w-xl mx-auto">
-          Religious content in every project is sourced from authenticated
-          texts. None of it is generated.
+        <p className="mx-auto mt-6 max-w-xl text-text-secondary">
+          The Qur&rsquo;an and hadith in these projects come from published
+          sources. None of it is generated at run time.
         </p>
-      </motion.div>
+      </div>
 
-      {/* Category filter — cartouche-style markers */}
-      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+      <div
+        role="group"
+        aria-label="Filter projects by category"
+        className="mb-4 flex flex-wrap justify-center gap-2"
+      >
         {categories.map((cat) => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setActiveCategory(cat.id)}
-            aria-label={`Filter by ${cat.label}`}
             aria-pressed={activeCategory === cat.id}
-            className={`px-4 sm:px-5 py-2.5 min-h-[44px] rounded-md font-body text-xs uppercase tracking-[0.2em] transition-colors duration-300 border ${
+            className={`min-h-11 border px-4 text-xs uppercase tracking-[0.18em] ${
               activeCategory === cat.id
-                ? "border-gold-primary/60 bg-gold-primary/10 text-gold-primary"
-                : "border-gold-muted/25 text-text-muted hover:border-gold-muted/50 hover:text-text-secondary"
+                ? "border-gold-primary bg-bg-tertiary text-gold-primary"
+                : "border-rule text-text-secondary hover:text-gold-primary"
             }`}
           >
             {cat.label}
@@ -60,34 +49,15 @@ export function ProjectsShowcase() {
         ))}
       </div>
 
-      {/* Project grid */}
-      {filteredProjects.length > 0 ? (
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-                onSelect={setSelectedProject}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      ) : (
-        <p className="font-body text-text-muted text-sm text-center py-16">
-          Nothing in this category yet.
-        </p>
-      )}
+      <p role="status" className="mb-10 text-center text-sm text-text-muted">
+        Showing {filteredProjects.length} of {projects.length} projects
+      </p>
 
-      {/* Detail modal */}
-      <ProjectDetailModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      <div className="grid grid-cols-1 items-start gap-x-14 lg:grid-cols-2">
+        {filteredProjects.map((project, index) => (
+          <ProjectCard key={project.id} project={project} number={index + 1} />
+        ))}
+      </div>
     </section>
   );
 }
