@@ -1,61 +1,30 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { GeometricPattern } from "./geometric-pattern";
 
 export function Hero() {
-  const stagger = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-    },
-  };
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" as const },
-    },
-  };
-
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-      {/* Background geometric pattern */}
-      <div className="absolute inset-0 pointer-events-none">
-        <GeometricPattern />
-      </div>
+    <section className="relative flex min-h-[80svh] flex-col items-center justify-center overflow-hidden px-6 py-20 text-center">
+      <GeometricPattern />
 
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 text-center max-w-4xl mx-auto"
-      >
-        {/* Bismillah */}
-        <motion.p
-          variants={fadeUp}
-          className="font-arabic text-4xl md:text-5xl lg:text-6xl gold-shimmer mb-12 leading-[1.6] pb-2"
+      <div className="relative mx-auto max-w-3xl">
+        <p
+          className="mb-10 font-arabic text-5xl leading-[1.7] text-gold-primary md:text-6xl lg:text-7xl"
           lang="ar"
           dir="rtl"
         >
           ﴿ بسم الله الرحمن الرحيم ﴾
-        </motion.p>
+        </p>
 
-        {/* Descriptive intro */}
-        <motion.p
-          variants={fadeUp}
-          className="font-body text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed"
-        >
-          Seven open-source Islamic projects across Quran content, Tajweed,
-          the Prophet&rsquo;s life, the 99 Names of Allah, new-Muslim
-          guidance, a browser companion, and a desktop prayer tool.
-          Religious content is read-only, drawn from authenticated texts.
-          Built freely so that benefit may continue.
-        </motion.p>
-      </motion.div>
+        <h1 className="font-display text-display-lg font-semibold">
+          Open-source Islamic software
+        </h1>
+
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
+          Qur&rsquo;an videos, Tajweed lessons, the Prophet&rsquo;s life, the 99
+          Names of Allah, guidance for new Muslims, a browser extension and a
+          desktop prayer-times widget. Built freely so that benefit may
+          continue.
+        </p>
+      </div>
     </section>
   );
 }
