@@ -5,7 +5,7 @@ import { projects, categories } from "@/data/projects";
 import { ProjectCard } from "./project-card";
 import { SectionDivider } from "./section-divider";
 
-export function ProjectsShowcase() {
+export function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
   const filteredProjects =
