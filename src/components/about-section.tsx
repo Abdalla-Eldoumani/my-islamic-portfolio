@@ -1,31 +1,19 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { SectionDivider } from "./section-divider";
 
 export function AboutSection() {
   return (
-    <section id="about" className="portfolio-section">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className="max-w-2xl mx-auto text-center"
-      >
-        <h2 className="font-display text-display-lg font-semibold text-text-primary mb-4">
-          About
-        </h2>
-        <SectionDivider />
+    <section
+      id="about"
+      className="mx-auto max-w-2xl px-6 py-16 text-center md:py-24"
+    >
+      <h2 className="font-display text-display-lg font-semibold">About</h2>
+      <SectionDivider />
 
-        <p className="mt-8 font-body text-text-secondary leading-relaxed">
-          The aim of this portfolio is{" "}
-          <span className="text-gold-primary italic">sadaqah jariyah</span>,
-          work that may continue to benefit others by the mercy of Allah.
-        </p>
-
-        <div className="geometric-divider max-w-xs mx-auto mt-10" />
-      </motion.div>
+      <p className="mt-8 leading-relaxed text-text-secondary">
+        The aim of this portfolio is{" "}
+        <span className="text-gold-primary">sadaqah jariyah</span>, work that
+        may continue to benefit others by the mercy of Allah.
+      </p>
     </section>
   );
 }
