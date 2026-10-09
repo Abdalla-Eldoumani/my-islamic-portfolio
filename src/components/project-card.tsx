@@ -1,5 +1,21 @@
 import type { Project } from "@/data/projects";
 
+const HONORIFIC = "\uFDFA";
+
+// The body font has no glyph for the honorific, so it gets Arabic type and a language tag.
+function withHonorific(text: string) {
+  return text.split(HONORIFIC).flatMap((part, i) =>
+    i === 0
+      ? [part]
+      : [
+          <span key={i} lang="ar" dir="rtl" className="font-arabic">
+            {HONORIFIC}
+          </span>,
+          part,
+        ],
+  );
+}
+
 interface ProjectCardProps {
   project: Project;
   number: number;
@@ -16,7 +32,7 @@ export function ProjectCard({ project, number }: ProjectCardProps) {
       <div className="flex items-baseline gap-4">
         <span
           aria-hidden="true"
-          className="font-display text-3xl text-gold-primary"
+          className="font-display text-3xl lining-nums text-gold-primary"
         >
           {String(number).padStart(2, "0")}
         </span>
@@ -43,22 +59,28 @@ export function ProjectCard({ project, number }: ProjectCardProps) {
       </div>
 
       <p className="leading-relaxed text-text-secondary">
-        {project.description}
+        {withHonorific(project.description)}
       </p>
 
       <dl className="flex flex-wrap gap-x-8 gap-y-3 border-y border-rule py-3">
         {project.stats.map((stat) => (
           <div key={stat.label} className="flex flex-col-reverse">
             <dt className="text-xs text-text-muted">{stat.label}</dt>
-            <dd className="font-display text-2xl text-gold-primary">
+            <dd className="font-display text-2xl lining-nums text-gold-primary">
               {stat.value}
             </dd>
           </div>
         ))}
       </dl>
 
-      <details>
-        <summary className="flex min-h-11 cursor-pointer items-center text-sm font-medium marker:text-gold-primary">
+      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-text-muted">
+        {project.techStack.map((tech) => (
+          <li key={tech}>{tech}</li>
+        ))}
+      </ul>
+
+      <details className="group">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-sm font-medium after:text-lg after:text-gold-primary after:content-['+'] group-open:after:content-['-'] [&::-webkit-details-marker]:hidden">
           Highlights
         </summary>
         <ul className="list-disc space-y-2 ps-5 text-sm leading-relaxed text-text-secondary marker:text-gold-primary">
@@ -67,12 +89,6 @@ export function ProjectCard({ project, number }: ProjectCardProps) {
           ))}
         </ul>
       </details>
-
-      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-text-muted">
-        {project.techStack.map((tech) => (
-          <li key={tech}>{tech}</li>
-        ))}
-      </ul>
 
       <ul className="flex flex-wrap gap-x-6">
         {project.links.map((link) => (
