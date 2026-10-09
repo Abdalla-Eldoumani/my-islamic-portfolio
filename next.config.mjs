@@ -3,6 +3,7 @@ const nextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  agentRules: false,
   turbopack: {
     root: import.meta.dirname,
   },
