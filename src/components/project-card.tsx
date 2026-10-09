@@ -1,164 +1,96 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Github, ExternalLink, Chrome } from "lucide-react";
 import type { Project } from "@/data/projects";
 
 interface ProjectCardProps {
   project: Project;
-  index: number;
-  onSelect?: (project: Project) => void;
+  number: number;
 }
 
-export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
+export function ProjectCard({ project, number }: ProjectCardProps) {
+  const titleId = `${project.id}-title`;
+
   return (
-    <motion.article
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="relative bg-bg-secondary border border-gold-muted/25 hover:border-[var(--card-accent)] rounded-2xl p-6 md:p-8 flex flex-col gap-4 transition-colors duration-500 group"
-      style={
-        { "--card-accent": project.accentColor } as React.CSSProperties
-      }
+    <article
+      aria-labelledby={titleId}
+      className="flex flex-col gap-4 border-t border-rule pt-6 pb-10"
     >
-      {/* Corner ornament (top-right). Eight-point mark, intensifies on hover. */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        className="absolute top-4 right-4 w-5 h-5 text-gold-muted opacity-40 group-hover:opacity-80 transition-opacity duration-500"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1"
-      >
-        <rect x="6" y="6" width="12" height="12" />
-        <rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)" />
-      </svg>
-
-      {/* Category badge */}
-      <span
-        className="inline-block w-fit px-3 py-1 rounded-md text-xs font-body font-medium uppercase tracking-wider"
-        style={{
-          backgroundColor: `${project.accentColor}1A`,
-          color: project.accentColor,
-        }}
-      >
-        {project.categoryLabel}
-      </span>
-
-      {/* Title & subtitle — clickable area */}
-      <div
-        className={onSelect ? "cursor-pointer" : undefined}
-        onClick={() => onSelect?.(project)}
-      >
-        <h3 className="font-display text-display-sm text-text-primary mb-1">
-          {project.title}
-        </h3>
-        {project.arabicTitle && (
-          <p
-            className="font-arabic text-gold-muted text-sm mb-1"
-            lang="ar"
-            dir="rtl"
-          >
-            {project.arabicTitle}
-          </p>
-        )}
-        <p className="font-body text-sm text-text-secondary">
-          {project.subtitle}
+      <div className="flex items-baseline gap-4">
+        <span
+          aria-hidden="true"
+          className="font-display text-3xl text-gold-primary"
+        >
+          {String(number).padStart(2, "0")}
+        </span>
+        <p className="text-xs uppercase tracking-[0.18em] text-text-muted">
+          {project.categoryLabel}
         </p>
       </div>
 
-      {/* Description */}
-      <p className="font-body text-sm text-text-muted leading-relaxed line-clamp-4">
+      <div>
+        <h3
+          id={titleId}
+          className="font-display text-display-sm font-semibold"
+        >
+          {project.title}
+        </h3>
+        {project.arabicTitle && (
+          <p className="mt-1 font-arabic text-xl text-gold-primary">
+            <span lang="ar" dir="rtl">
+              {project.arabicTitle}
+            </span>
+          </p>
+        )}
+        <p className="mt-1 text-text-secondary">{project.subtitle}</p>
+      </div>
+
+      <p className="leading-relaxed text-text-secondary">
         {project.description}
       </p>
 
-      {/* Stats */}
-      {project.stats && (
-        <div className="flex flex-wrap gap-4 sm:gap-6 py-3 border-t border-b border-gold-muted/15">
-          {project.stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div
-                className="font-display text-lg font-semibold"
-                style={{ color: project.accentColor }}
-              >
-                {stat.value}
-              </div>
-              <div className="font-body text-xs text-text-muted">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Tech stack */}
-      <div className="flex flex-wrap gap-2 mt-auto">
-        {project.techStack.slice(0, 4).map((tech) => (
-          <span
-            key={tech}
-            className="px-2 py-1 rounded-md bg-bg-tertiary text-text-muted font-body text-xs"
-          >
-            {tech}
-          </span>
+      <dl className="flex flex-wrap gap-x-8 gap-y-3 border-y border-rule py-3">
+        {project.stats.map((stat) => (
+          <div key={stat.label} className="flex flex-col-reverse">
+            <dt className="text-xs text-text-muted">{stat.label}</dt>
+            <dd className="font-display text-2xl text-gold-primary">
+              {stat.value}
+            </dd>
+          </div>
         ))}
-        {project.techStack.length > 4 && (
-          <span className="px-2 py-1 text-text-muted font-body text-xs">
-            +{project.techStack.length - 4}
-          </span>
-        )}
-      </div>
+      </dl>
 
-      {/* Action links */}
-      <div className="flex flex-wrap gap-3 pt-2">
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`View ${project.title} source on GitHub`}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-tertiary text-text-secondary hover:text-gold-primary hover:bg-gold-primary/10 font-body text-sm transition-colors"
-        >
-          <Github size={14} />
-          Source
-        </a>
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${project.title} live demo`}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body transition-colors hover:bg-gold-primary/10"
-            style={{ color: project.accentColor }}
-          >
-            <ExternalLink size={14} />
-            Live Demo
-          </a>
-        )}
-        {project.chromeStoreUrl && (
-          <a
-            href={project.chromeStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${project.title} on Chrome Web Store`}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-body transition-colors hover:bg-gold-primary/10"
-            style={{ color: project.accentColor }}
-          >
-            <Chrome size={14} />
-            Chrome Store
-          </a>
-        )}
-        {onSelect && (
-          <button
-            onClick={() => onSelect(project)}
-            className="ml-auto px-4 py-2 rounded-lg text-sm font-body text-text-muted hover:text-gold-primary hover:bg-gold-primary/10 transition-colors"
-            aria-label={`View details for ${project.title}`}
-          >
-            Details
-          </button>
-        )}
-      </div>
-    </motion.article>
+      <details>
+        <summary className="flex min-h-11 cursor-pointer items-center text-sm font-medium marker:text-gold-primary">
+          Highlights
+        </summary>
+        <ul className="list-disc space-y-2 ps-5 text-sm leading-relaxed text-text-secondary marker:text-gold-primary">
+          {project.features.map((feature) => (
+            <li key={feature}>{feature}</li>
+          ))}
+        </ul>
+      </details>
+
+      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-text-muted">
+        {project.techStack.map((tech) => (
+          <li key={tech}>{tech}</li>
+        ))}
+      </ul>
+
+      <ul className="flex flex-wrap gap-x-6">
+        {project.links.map((link) => (
+          <li key={link.label}>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center text-gold-primary underline decoration-rule underline-offset-4 hover:decoration-gold-primary"
+            >
+              {link.label}
+              <span className="sr-only">
+                : {project.title}, opens in a new tab
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
