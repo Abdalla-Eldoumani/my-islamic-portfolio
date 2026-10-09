@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const linkClass =
   "inline-flex min-h-11 items-center px-3 text-sm text-text-secondary hover:text-gold-primary";
 
@@ -8,12 +10,12 @@ export function Navbar() {
         aria-label="Primary"
         className="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-3 md:px-5"
       >
-        <a
+        <Link
           href="/"
           className="inline-flex min-h-11 items-center px-3 font-display text-lg text-text-primary hover:text-gold-primary"
         >
           Abdalla Eldoumani
-        </a>
+        </Link>
         <ul className="flex flex-wrap items-center">
           <li>
             <a href="#about" className={linkClass}>
