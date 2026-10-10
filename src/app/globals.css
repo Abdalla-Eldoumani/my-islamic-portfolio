@@ -1,70 +1,75 @@
 @import "tailwindcss";
 
 /*
-  Text pairs on these surfaces clear 4.5:1. The rule colour is decorative
-  (hairlines and borders) and is never used for text.
+  Graphite and stone with a crimson accent. Every text pair below clears 4.5:1
+  on both grounds. The rule colour draws hairlines and is never used for text.
 */
 :root {
-  color-scheme: dark;
-  --bg-primary: #0a0f1c;
-  --bg-secondary: #111827;
-  --bg-tertiary: #1a2235;
-  --gold: #d4a843;
-  --rule: #5c4e2a;
-  --text-primary: #f1ede4;
-  --text-secondary: #b6bcc8;
-  --text-muted: #98a1b1;
+  color-scheme: light;
+  --ground: #e4e5e2;
+  --sunk: #d8d9d5;
+  --ink: #181817;
+  --ink-2: #3b3b38;
+  --ink-3: #55554f;
+  --accent: #a3122c;
+  --rule: #a3a49f;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color-scheme: light;
-    --bg-primary: #f5eedd;
-    --bg-secondary: #fbf6e9;
-    --bg-tertiary: #ece2c9;
-    --gold: #7a5a0e;
-    --rule: #b8a15a;
-    --text-primary: #1d1a12;
-    --text-secondary: #463f2c;
-    --text-muted: #5a5238;
+    color-scheme: dark;
+    --ground: #161716;
+    --sunk: #1f201f;
+    --ink: #ecebe7;
+    --ink-2: #c8c8c2;
+    --ink-3: #9d9d97;
+    --accent: #ec7a8c;
+    --rule: #4d4e4a;
   }
 }
 
 @theme inline {
-  --color-bg-primary: var(--bg-primary);
-  --color-bg-secondary: var(--bg-secondary);
-  --color-bg-tertiary: var(--bg-tertiary);
-  --color-gold-primary: var(--gold);
+  --color-ground: var(--ground);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
   --color-rule: var(--rule);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
 
-  --font-display: var(--font-cormorant), "Cormorant Garamond", serif;
-  --font-body: var(--font-jakarta), "Plus Jakarta Sans", sans-serif;
-  --font-arabic: var(--font-amiri), Amiri, serif;
-}
-
-@theme {
-  --text-display-lg: clamp(2rem, 4vw, 3.25rem);
-  --text-display-lg--line-height: 1.15;
-  --text-display-sm: clamp(1.375rem, 2vw, 1.75rem);
-  --text-display-sm--line-height: 1.25;
+  --font-display: var(--font-instrument-serif), "Instrument Serif",
+    var(--font-scheherazade), serif;
+  --font-body: var(--font-instrument-sans), "Instrument Sans",
+    var(--font-scheherazade), sans-serif;
+  --font-ruqaa: var(--font-aref-ruqaa), "Aref Ruqaa", serif;
+  --font-naskh: var(--font-scheherazade), "Scheherazade New", serif;
 }
 
 @layer base {
   html {
-    background-color: var(--bg-primary);
+    background-color: var(--ground);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 48rem) {
+    body {
+      font-size: 1.125rem;
+    }
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--gold) 30%, transparent);
+    background-color: color-mix(in srgb, var(--accent) 28%, transparent);
   }
 
   :focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
 
@@ -79,5 +84,100 @@
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+@layer components {
+  .wrap {
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 40rem) {
+    .wrap {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* The basmala is one line at every width: its size follows the viewport
+     and it never wraps. */
+  .basmala {
+    font-family: var(--font-ruqaa);
+    font-size: clamp(2rem, 0.9rem + 6.2vw, 6.75rem);
+    line-height: 1.75;
+    white-space: nowrap;
+    text-align: center;
+    color: var(--accent);
+  }
+
+  .arabic-name {
+    font-family: var(--font-ruqaa);
+    line-height: 1.8;
+  }
+
+  /* A plate: head across the top, then the figure and the entry. */
+  .plate {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "head"
+      "figure"
+      "entry";
+    gap: 1.5rem;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+    border-top: 1px solid var(--rule);
+    scroll-margin-top: 1rem;
+  }
+
+  @media (min-width: 64rem) {
+    .plate {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      grid-template-areas:
+        "head head"
+        "figure entry";
+      column-gap: clamp(2rem, 4vw, 4rem);
+      row-gap: 2rem;
+    }
+  }
+
+  .plate-head {
+    grid-area: head;
+  }
+
+  .plate-figure {
+    grid-area: figure;
+    align-self: start;
+  }
+
+  .plate-entry {
+    grid-area: entry;
+  }
+
+  /* The plate a contents link points at. */
+  .plate:target .plate-no {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  .link {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: color 150ms, text-decoration-color 150ms;
+  }
+
+  .link:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
   }
 }
