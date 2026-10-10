@@ -1,6 +1,6 @@
 # Islamic software portfolio
 
-A one-page catalogue of eight open-source Islamic projects by Abdalla Eldoumani: Noor Guide, Tajweed Trainer, Noor al-Seerah, Asmaa, the Qur'an & Sunnah Companion browser extension, Salaat Widget, the Quran Verse Videos pipeline and Maqra. Each project is one plate with a screenshot, its number, its English and Arabic name, a sentence on what it is and who it is for, three figures, a sources line and its links.
+A one-page catalogue of nine open-source Islamic projects by Abdalla Eldoumani: Noor Guide, Tajweed Trainer, Noor al-Seerah, Asmaa, the Qur'an & Sunnah Companion browser extension, Salaat Widget, Sukoon, the Quran Verse Videos pipeline and Maqra. Each project is one plate with a screenshot, its number, its English and Arabic name, a sentence on what it is and who it is for, three figures, a sources line and its links.
 
 The site is static. It has no backend, no database and no analytics, and it does not generate any religious text. The Arabic on the page is fixed in the source and every plate is readable without JavaScript.
 
@@ -45,7 +45,7 @@ node scripts/capture-screenshots.mjs --only seerah        # one site
 node scripts/capture-screenshots.mjs --import extension shot.png   # optimise a ready image
 ```
 
-The live sites are Noor Guide, Tajweed Trainer, Noor al-Seerah, Asmaa and the Maqra dataset page on Hugging Face. The images for the browser extension, Salaat Widget and the video pipeline are assembled from those projects' own screenshots, because none has a live page, and are added with `--import`. Run the script again after a project's site changes, then commit the changed image.
+The live sites are Noor Guide, Tajweed Trainer, Noor al-Seerah, Asmaa and the Maqra dataset page on Hugging Face. The images for the browser extension, Salaat Widget, Sukoon and the video pipeline are assembled from those projects' own screenshots, because none has a live page, and are added with `--import`. Run the script again after a project's site changes, then commit the changed image.
 
 ## Deploying
 
