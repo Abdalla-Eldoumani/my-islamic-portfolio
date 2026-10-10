@@ -3,7 +3,7 @@
 // repository before changing one. The order here is the order of the plates.
 //
 // Images are in public/projects/ and are made by scripts/capture-screenshots.mjs:
-// the live sites are captured from their URLs, and the other three are
+// the live sites are captured from their URLs, and the other four are
 // assembled from the projects' own screenshots.
 
 export interface Fact {
@@ -207,6 +207,34 @@ export const projects: Project[] = [
       {
         label: "Source",
         href: "https://github.com/Abdalla-Eldoumani/salaat-widget",
+      },
+    ],
+  },
+  {
+    id: "sukoon",
+    title: "Sukoon",
+    arabicTitle: "سكون",
+    kind: "Local app · Audio and video",
+    summary:
+      "A local app that takes the music out of audio and video files and keeps the voices, so a lecture, a recitation or a family video can be heard without its background music. It runs on your own computer and uploads nothing.",
+    facts: [
+      { value: "6.7×", label: "faster than real time with Best on an RTX 3060 Laptop GPU" },
+      { value: "18.1 dB", label: "speech clarity (SI-SDR) after Best, up from 0.3\u00a0dB" },
+      { value: "10", label: "output formats: 6 for audio and 4 for video" },
+    ],
+    sources:
+      "Separation runs on two models made by other people under the MIT licence: Kimberley Jensen's Mel-Band RoFormer vocal model and UVR-MDX-NET Voc FT from Ultimate Vocal Remover. The split is not exact, so play a result against the original before relying on it.",
+    image: {
+      src: "/projects/sukoon.webp",
+      width: 1440,
+      height: 710,
+      alt: "The sukoon window with a finished lecture open: a strip shows the voice kept above a line and the music removed below it, with a switch between the cleaned file and the original.",
+      caption: "A finished job, with the voice kept above the line and the music below",
+    },
+    links: [
+      {
+        label: "Source",
+        href: "https://github.com/Abdalla-Eldoumani/sukoon",
       },
     ],
   },
