@@ -17,7 +17,7 @@ export function Hero() {
             Open-source Islamic software
           </h1>
           <p className="mt-6 max-w-[34rem] font-display text-[clamp(1.375rem,1.1rem+0.9vw,1.875rem)] leading-[1.3] text-balance text-ink-2">
-            Eight projects, built freely so that benefit may continue.
+            Nine projects, built freely so that benefit may continue.
           </p>
           <p className="mt-5 max-w-[34rem] text-ink-2">
             Each plate below says what the project is for, gives three figures
