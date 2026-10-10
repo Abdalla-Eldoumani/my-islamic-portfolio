@@ -1,19 +1,28 @@
-import { SectionDivider } from "./section-divider";
-
 export function AboutSection() {
   return (
     <section
       id="about"
-      className="mx-auto max-w-2xl px-6 py-16 text-center md:py-24"
+      aria-labelledby="about-title"
+      className="wrap scroll-mt-4"
     >
-      <h2 className="font-display text-display-lg font-semibold">About</h2>
-      <SectionDivider />
-
-      <p className="mt-8 leading-relaxed text-text-secondary">
-        The aim of this portfolio is{" "}
-        <span className="text-gold-primary">sadaqah jariyah</span>, work that
-        may continue to benefit others by the mercy of Allah.
-      </p>
+      <div className="grid gap-6 border-t border-rule py-14 lg:grid-cols-[5fr_7fr] lg:gap-16 lg:py-20">
+        <h2
+          id="about-title"
+          className="font-display text-[clamp(2rem,1.4rem+2vw,3rem)] leading-none text-ink"
+        >
+          About the catalogue
+        </h2>
+        <div className="max-w-[40rem] space-y-4 text-ink-2">
+          <p>
+            These projects are written by Abdalla Eldoumani.
+            Each is open source, so anyone may read it, use it and improve it.
+          </p>
+          <p>
+            The aim is sadaqah jariyah: work that may keep benefiting people
+            after it is published, by the mercy of Allah.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }
