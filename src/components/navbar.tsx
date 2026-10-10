@@ -1,30 +1,30 @@
 import Link from "next/link";
 
 const linkClass =
-  "inline-flex min-h-11 items-center px-3 text-sm text-text-secondary hover:text-gold-primary";
+  "inline-flex min-h-11 items-center px-2.5 text-[0.9375rem] text-ink-2 transition-colors hover:text-accent sm:px-3 sm:text-base";
 
 export function Navbar() {
   return (
     <header className="border-b border-rule">
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-3 md:px-5"
+        className="wrap flex flex-wrap items-center justify-between"
       >
         <Link
           href="/"
-          className="inline-flex min-h-11 items-center px-3 font-display text-lg text-text-primary hover:text-gold-primary"
+          className="inline-flex min-h-11 items-center font-display text-xl text-ink transition-colors hover:text-accent"
         >
           Abdalla Eldoumani
         </Link>
-        <ul className="flex flex-wrap items-center">
+        <ul className="-me-2.5 flex flex-wrap items-center sm:-me-3">
           <li>
-            <a href="#about" className={linkClass}>
-              About
+            <a href="#contents" className={linkClass}>
+              Contents
             </a>
           </li>
           <li>
-            <a href="#projects" className={linkClass}>
-              Projects
+            <a href="#about" className={linkClass}>
+              About
             </a>
           </li>
           <li>
