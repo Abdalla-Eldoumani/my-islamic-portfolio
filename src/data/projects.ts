@@ -1,60 +1,236 @@
-// Every number and claim on the site lives in this file. Figures are as the
-// projects stood on 9 October 2026; check a project's repository before
-// changing one.
+// Every project figure, sentence and link on the site lives in this file.
+// Figures are as the projects stood on 10 October 2026; check a project's
+// repository before changing one. The order here is the order of the plates.
+//
+// Images are in public/projects/ and are made by scripts/capture-screenshots.mjs:
+// the live sites are captured from their URLs, and the other three are
+// assembled from the projects' own screenshots.
 
-export const categories = [
-  { id: "all", label: "All Projects" },
-  { id: "quran", label: "Quran" },
-  { id: "education", label: "Education" },
-  { id: "seerah", label: "Seerah" },
-  { id: "extension", label: "Extension" },
-  { id: "tools", label: "Tools" },
-] as const;
+export interface Fact {
+  value: string;
+  label: string;
+}
 
 export interface Project {
   id: string;
   title: string;
-  arabicTitle?: string;
-  subtitle: string;
-  description: string;
-  features: string[];
-  techStack: string[];
-  category: Exclude<(typeof categories)[number]["id"], "all">;
-  categoryLabel: string;
-  stats: { label: string; value: string }[];
+  arabicTitle: string;
+  kind: string;
+  summary: string;
+  facts: [Fact, Fact, Fact];
+  sources: string;
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+    caption: string;
+  };
   links: { label: string; href: string }[];
 }
 
 export const projects: Project[] = [
   {
+    id: "noor-guide",
+    title: "Noor Guide",
+    arabicTitle: "نور",
+    kind: "Web app · Learning",
+    summary:
+      "First lessons in Islam for new Muslims and anyone starting out, to be read in order, in English, Arabic or French.",
+    facts: [
+      { value: "9", label: "parts, from belief to what follows a death" },
+      { value: "51", label: "lessons, about 245 minutes in all" },
+      { value: "0", label: "accounts, payments or advertisements" },
+    ],
+    sources:
+      "Qur'an text is from AlQuran Cloud and quran.com, with Saheeh International in English and Hamidullah in French. Hadith give their collection and number. Rulings are marked as awaiting review by a qualified scholar.",
+    image: {
+      src: "/projects/noor-guide.webp",
+      width: 1440,
+      height: 900,
+      alt: "The Noor Guide home page: a heading, two entry points for new readers and the list of the nine parts.",
+      caption: "Home page, noor-guide-dusky.vercel.app",
+    },
+    links: [
+      { label: "Live site", href: "https://noor-guide-dusky.vercel.app" },
+      {
+        label: "Source",
+        href: "https://github.com/Abdalla-Eldoumani/noor-guide",
+      },
+    ],
+  },
+  {
+    id: "tajweed-trainer",
+    title: "Tajweed Trainer",
+    arabicTitle: "معلّم التجويد",
+    kind: "Web app · Recitation",
+    summary:
+      "Lessons, practice questions and a 604-page mushaf reader for anyone learning the rules of Qur'an recitation, in English and Arabic.",
+    facts: [
+      { value: "604", label: "pages in the mushaf reader, with the rules coloured" },
+      { value: "276", label: "practice questions across 9 lesson modules" },
+      { value: "42", label: "reciters, played verse by verse" },
+    ],
+    sources:
+      "Text and tajweed colouring come from the Quran.com API and are shown as returned. Audio is from Quran.com and EveryAyah. The lessons follow Hafs 'an 'Asim, and every example carries its surah and ayah.",
+    image: {
+      src: "/projects/tajweed-trainer.webp",
+      width: 1440,
+      height: 900,
+      alt: "The Tajweed Trainer home page with its side navigation, a Start Learning button and the verse of the day.",
+      caption: "Home page, tajweedtrainer.vercel.app",
+    },
+    links: [
+      { label: "Live site", href: "https://tajweedtrainer.vercel.app" },
+      {
+        label: "Source",
+        href: "https://github.com/Abdalla-Eldoumani/tajweed-trainer",
+      },
+    ],
+  },
+  {
+    id: "seerah",
+    title: "Noor al-Seerah",
+    arabicTitle: "نور السيرة",
+    kind: "Web app · Seerah",
+    summary:
+      "An interactive reader for the life of the Prophet ﷺ in 49 events across three eras, in English, Arabic and French.",
+    facts: [
+      { value: "49", label: "events: 14 before prophethood, 18 Meccan, 17 Medinan" },
+      { value: "36", label: "Qur'an passages from published editions" },
+      { value: "31", label: "hadith citations, each with a review record the build checks" },
+    ],
+    sources:
+      "Qur'an passages are the Uthmani text, Saheeh International and Hamidullah. The Arabic of each hadith is read from its collection; the English and French are the project's own abridgements, and each page says so.",
+    image: {
+      src: "/projects/seerah.webp",
+      width: 1440,
+      height: 900,
+      alt: "The Noor al-Seerah home page: the title in Arabic and English and a button that opens the timeline.",
+      caption: "Home page, noor-al-seerah.vercel.app",
+    },
+    links: [
+      { label: "Live site", href: "https://noor-al-seerah.vercel.app" },
+      {
+        label: "Source",
+        href: "https://github.com/Abdalla-Eldoumani/seerah",
+      },
+    ],
+  },
+  {
+    id: "asmaa",
+    title: "Asmaa",
+    arabicTitle: "أسماء",
+    kind: "Web app · Names of Allah",
+    summary:
+      "A study app for learning the 99 Names of Allah, with a quiz and a progress view, in English, Arabic and French.",
+    facts: [
+      { value: "99", label: "names, each with its meaning and a short reflection" },
+      { value: "3", label: "languages, with full right-to-left layout in Arabic" },
+      { value: "0", label: "dependencies and no build step" },
+    ],
+    sources:
+      "The names and their order follow the list in Jami' at-Tirmidhi 3507, with al-Ahad added at number 67. sunnah.com gives that hadith the grading da'if. The reflections are explanation, not quotation.",
+    image: {
+      src: "/projects/asmaa.webp",
+      width: 1440,
+      height: 900,
+      alt: "The Asmaa browse view: the name of the day, a search box and a grid of names in Arabic with their meanings.",
+      caption: "Browse view, asmaa-alpha.vercel.app",
+    },
+    links: [
+      { label: "Live site", href: "https://asmaa-alpha.vercel.app" },
+      {
+        label: "Source",
+        href: "https://github.com/Abdalla-Eldoumani/asmaa",
+      },
+    ],
+  },
+  {
+    id: "islam-extension",
+    title: "Qur'an & Sunnah Companion",
+    arabicTitle: "رفيق القرآن والسنة",
+    kind: "Browser extension",
+    summary:
+      "A browser extension for listening to the Qur'an, reading a hadith each time you open it and getting dhikr reminders, in English, French and Arabic.",
+    facts: [
+      { value: "426", label: "reciters from three catalogues, on 9 October 2026" },
+      { value: "28", label: "adhkar, each naming its source" },
+      { value: "0", label: "accounts, analytics or tracking" },
+    ],
+    sources:
+      "Hadith are from Sahih al-Bukhari and Sahih Muslim and link to sunnah.com. Reciters come from Quran.com, MP3Quran and Al-Quran Cloud. For adhkar taken from hadith, the English line is the project's own rendering unless the source line says it is from sunnah.com.",
+    image: {
+      src: "/projects/extension.webp",
+      width: 1440,
+      height: 900,
+      alt: "Four states of the extension's popup: playing a surah in English, playing in Arabic with a dark theme, a reciter search, and the dhikr reminder window in both languages.",
+      caption: "Popup states, from the extension's own screenshots",
+    },
+    links: [
+      {
+        label: "Chrome Web Store",
+        href: "https://chromewebstore.google.com/detail/quran-sunnah-companion/okkohadnmodfaienacdlfaledjblcbka",
+      },
+      {
+        label: "Source",
+        href: "https://github.com/Abdalla-Eldoumani/islam-extension",
+      },
+    ],
+  },
+  {
+    id: "salaat-widget",
+    title: "Salaat Widget",
+    arabicTitle: "أداة مواقيت الصلاة",
+    kind: "Desktop app",
+    summary:
+      "A desktop widget that shows the five daily prayers and sunrise, counts down to the next and plays the adhan, on Windows, macOS and Linux.",
+    facts: [
+      { value: "12", label: "calculation methods" },
+      { value: "131", label: "bundled cities, as an alternative to an IP lookup" },
+      { value: "5.3 MB", label: "Windows installer" },
+    ],
+    sources:
+      "Times are calculated on the device with the adhan library. The six adhan recordings come from PrayTimes.org, which publishes them without a licence, so they sit outside the project's MIT licence.",
+    image: {
+      src: "/projects/salaat-widget.webp",
+      width: 1440,
+      height: 640,
+      alt: "The widget in its three layouts, a sidebar, a horizontal bar and a compact window, each in a light and a dark theme.",
+      caption: "Sidebar, bar and compact layouts, from the widget's own screenshots",
+    },
+    links: [
+      {
+        label: "Download",
+        href: "https://github.com/Abdalla-Eldoumani/salaat-widget/releases/latest",
+      },
+      {
+        label: "Source",
+        href: "https://github.com/Abdalla-Eldoumani/salaat-widget",
+      },
+    ],
+  },
+  {
     id: "quran-content",
-    title: "Quran Verse Video Pipeline",
-    subtitle: "Vertical recitation videos for Instagram, Facebook and YouTube",
-    description:
-      "A Python pipeline that renders 1080×1920 videos of Quran passages. The Arabic appears about five words at a time, timed to the recitation, over nature footage. Whisper reads word timing from the audio, with Quran.com segments scaled to the audio length as a fallback. Posting goes through the official APIs of the three platforms. A daily GitHub Actions workflow is included but is switched off for now.",
-    features: [
-      "1,282 entries that together cover every ayah of the Qur'an, about 3.5 years at one a day",
-      "Five reciters in rotation: al-Afasy, al-Husary, al-Minshawi, Muhammad Ayyub and as-Sudais",
-      "Word timing from faster-whisper, with proportional timing from Quran.com segments as the fallback",
-      "Instagram Reels through the Graph API's resumable upload, Facebook as a Page video, YouTube through the Data API",
-      "Backgrounds come from Pexels, searched with 70 nature-only queries",
+    title: "Quran Verse Videos",
+    arabicTitle: "فيديوهات آيات القرآن",
+    kind: "Video tool · Python",
+    summary:
+      "A Python tool that renders vertical videos of Qur'an passages, with the Arabic timed to the recitation over nature footage, for Instagram, Facebook and YouTube.",
+    facts: [
+      { value: "6,236", label: "ayahs covered, in 1,282 passages" },
+      { value: "5", label: "reciters, shared out evenly" },
+      { value: "3.5 yrs", label: "of daily videos at one a day" },
     ],
-    techStack: [
-      "Python",
-      "FFmpeg",
-      "faster-whisper",
-      "Pillow",
-      "GitHub Actions",
-      "Meta Graph API",
-      "YouTube Data API",
-    ],
-    category: "quran",
-    categoryLabel: "Quran · Automation",
-    stats: [
-      { label: "Ayahs covered", value: "6,236" },
-      { label: "Reciters", value: "5" },
-      { label: "At one a day", value: "3.5 yrs" },
-    ],
+    sources:
+      "Arabic text and audio come from AlQuran Cloud, and the text is drawn as returned. Word timing is measured from the audio with faster-whisper. Footage is from Pexels. The daily posting workflow is switched off for now.",
+    image: {
+      src: "/projects/quran-content.webp",
+      width: 1440,
+      height: 640,
+      alt: "Three frames from a rendered video: the same navy panel with gold borders, showing a different line of Surat al-Ikhlas in Arabic in each.",
+      caption: "Three frames of a rendered video, Surat al-Ikhlas",
+    },
     links: [
       {
         label: "Source",
@@ -63,207 +239,31 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "tajweed-trainer",
-    title: "Tajweed Trainer",
-    subtitle: "Tajweed lessons, practice questions and a 604-page mushaf reader",
-    description:
-      "A web app in English and Arabic for learning the rules of Qur'an recitation. Nine lesson modules run from the points of articulation (makharij) through madd and waqf, with practice questions and spaced review. A Madinah mushaf reader colours each tajweed rule, plays the recitation verse by verse and tracks memorisation. It runs in the browser with no account and no server, and works offline as an installed app.",
-    features: [
-      "Nine modules and more than 270 practice questions",
-      "Colour-coded text for 20 tajweed rule classes, across five manuscript themes",
-      "A 604-page mushaf with navigation by page, rub' and juz",
-      "42 Hafs reciters: 12 from Quran.com and 30 from EveryAyah",
-      "Leitner-box review for quiz questions and SM-2 scheduling for memorised verses",
-      "Progress stays on the device, in the browser's local storage",
+    id: "maqra",
+    title: "Maqra",
+    arabicTitle: "مَقْرَأ",
+    kind: "Dataset · Audio archive",
+    summary:
+      "An open mirror of everyayah.com's verse-by-verse Qur'an recitations, with a checksum for every file, so apps and researchers can fetch any ayah by its URL.",
+    facts: [
+      { value: "80", label: "recitation sets: 77 in Hafs and 3 in Warsh" },
+      { value: "499,631", label: "audio files, each with a SHA-256 hash" },
+      { value: "MIT", label: "licence of the code and manifests; the recordings stay the reciters'" },
     ],
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Quran.com API",
-      "EveryAyah",
-    ],
-    category: "education",
-    categoryLabel: "Quran · Education",
-    stats: [
-      { label: "Modules", value: "9" },
-      { label: "Questions", value: "270+" },
-      { label: "Reciters", value: "42" },
-    ],
+    sources:
+      "The recordings are the reciters' work, collected and split by everyayah.com, which publishes no licence. Maqra asks for credit, non-commercial use and no alteration. Files are checked against everyayah.com's MD5 lists where they exist.",
+    image: {
+      src: "/projects/maqra.webp",
+      width: 1440,
+      height: 900,
+      alt: "A Maqra dataset page on Hugging Face, with the audio viewer listing recordings of a single reciter.",
+      caption: "The Mishari Alafasy 64 kbps set, on Hugging Face",
+    },
     links: [
+      { label: "Hugging Face", href: "https://huggingface.co/maqra-project" },
       {
-        label: "Source",
-        href: "https://github.com/Abdalla-Eldoumani/tajweed-trainer",
-      },
-      { label: "Live site", href: "https://tajweedtrainer.vercel.app" },
-    ],
-  },
-  {
-    id: "seerah",
-    title: "Noor al-Seerah",
-    arabicTitle: "نور السيرة",
-    subtitle: "The Light of the Prophetic Biography",
-    description:
-      "An interactive reader for the life of Prophet Muhammad ﷺ in English, Arabic and French. Forty-nine events are arranged across three eras: before prophethood, the Meccan period and the Medinan period. Each event has a title, location, summary and significance in all three languages, with the English as the source of record. The content lives in JSON and the application does not change it.",
-    features: [
-      "49 events: 14 before prophethood, 18 Meccan and 17 Medinan",
-      "36 Qur'an passages taken from published editions: the Uthmani text, Saheeh International and Hamidullah's French",
-      "31 hadith citations, each with a review record that the build checks, and the grading shown on the page",
-      "191 proper nouns with Arabic and French forms, checked at build",
-      "Fonts are self-hosted and the content security policy limits connections to the site itself",
-    ],
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "next-intl"],
-    category: "seerah",
-    categoryLabel: "Seerah · History",
-    stats: [
-      { label: "Events", value: "49" },
-      { label: "Eras", value: "3" },
-      { label: "Languages", value: "3" },
-    ],
-    links: [
-      {
-        label: "Source",
-        href: "https://github.com/Abdalla-Eldoumani/seerah",
-      },
-      { label: "Live site", href: "https://noor-al-seerah.vercel.app" },
-    ],
-  },
-  {
-    id: "asmaa",
-    title: "Asmaa",
-    arabicTitle: "أسماء",
-    subtitle: "Learn the 99 Names of Allah",
-    description:
-      "A web app for learning the 99 Beautiful Names of Allah (Asma ul-Husna). It has a browsable grid with the Arabic, transliteration and meaning of each name, a study mode with a short reflection, a ten-question quiz, and a progress view with favourites, a daily streak and quiz accuracy. The interface is in English, Arabic (with full right-to-left layout) and French, in light and dark themes. It is plain JavaScript and CSS with no framework and no build step.",
-    features: [
-      "All 99 names in Arabic with diacritics, a transliteration, meanings in English, Arabic and French, and a short reflection in each language",
-      "A name of the day at the top of the browse view, which you can hide until the next day",
-      "A ten-question multiple-choice quiz with immediate feedback that keeps your place when you switch views or languages",
-      "Progress kept in the browser: names learned, favourites, daily streak and quiz accuracy",
-      "No runtime dependencies and no build step",
-    ],
-    techStack: ["Vanilla JavaScript", "CSS", "Web Speech API", "localStorage"],
-    category: "education",
-    categoryLabel: "Names of Allah · Education",
-    stats: [
-      { label: "Names", value: "99" },
-      { label: "Languages", value: "3" },
-      { label: "Dependencies", value: "0" },
-    ],
-    links: [
-      {
-        label: "Source",
-        href: "https://github.com/Abdalla-Eldoumani/asmaa",
-      },
-      { label: "Live site", href: "https://asmaa-alpha.vercel.app" },
-    ],
-  },
-  {
-    id: "noor-guide",
-    title: "Noor Guide",
-    subtitle: "A learning path for new Muslims",
-    description:
-      "A free website for new Muslims and anyone learning the basics of Islam, in English, Arabic and French. Nine parts are meant to be read in order: belief, the five pillars, wudu, salah, essential surahs, daily du'as, purity beyond wudu, prayer in practice, and what follows a death. Three tools sit beside the lessons: prayer times from the AlAdhan API, a qibla direction worked out on the device, and a link to find a mosque. There is no account, no payment and no advertising.",
-    features: [
-      "Nine parts, 51 lessons and about 245 minutes of study",
-      "The Qur'an passages use the Uthmani text from AlQuran Cloud, with Saheeh International in English and Hamidullah in French, and the page names the edition",
-      "Hadith name their collection and number; the English and French renderings of hadith, du'as and the words of prayer are the project's own and are labelled that way",
-      "Six short surahs, verse by verse, with recitation by Mishary Alafasy",
-      "Rulings in the practical lessons are marked as awaiting review by a qualified scholar",
-      "Location is rounded to about a kilometre before it is saved or sent, and progress stays in the browser",
-    ],
-    techStack: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "next-intl",
-      "AlAdhan API",
-    ],
-    category: "education",
-    categoryLabel: "New Muslims · Education",
-    stats: [
-      { label: "Parts", value: "9" },
-      { label: "Lessons", value: "51" },
-      { label: "Languages", value: "3" },
-    ],
-    links: [
-      {
-        label: "Source",
-        href: "https://github.com/Abdalla-Eldoumani/noor-guide",
-      },
-      { label: "Live site", href: "https://noor-guide-dusky.vercel.app" },
-    ],
-  },
-  {
-    id: "islam-extension",
-    title: "Qur'an & Sunnah Companion",
-    subtitle: "Recitation, a hadith on each visit and dhikr reminders in the browser",
-    description:
-      "A browser extension with Qur'an recitation, a hadith from Sahih al-Bukhari or Sahih Muslim each time you open it, and dhikr reminders. The Chrome build uses Manifest V3 and the Firefox build uses Manifest V2. One searchable list merges reciters from Quran.com, MP3Quran and Al-Quran Cloud, and every entry plays whole surahs. There are no accounts, analytics, ads or tracking.",
-    features: [
-      "426 reciters from three catalogues, merged and de-duplicated, on 9 October 2026",
-      "Hadith from Sahih al-Bukhari and Sahih Muslim in English, French or Arabic, each linked to its page on sunnah.com with its collection and number",
-      "28 adhkar in Arabic with a transliteration and an English meaning, each naming its source; for adhkar taken from hadith the English line is the project's own rendering",
-      "Reminders from every 30 seconds to every hour, as a system notification or a small window",
-      "Playback continues after the popup closes, with a sleep timer of 15, 30, 45 or 60 minutes",
-    ],
-    techStack: [
-      "Vanilla JavaScript",
-      "Chrome MV3",
-      "Firefox MV2",
-      "Quran.com API",
-      "MP3Quran",
-      "web-ext",
-    ],
-    category: "extension",
-    categoryLabel: "Browser Extension · Tools",
-    stats: [
-      { label: "Reciters", value: "400+" },
-      { label: "Hadith collections", value: "2" },
-      { label: "Adhkar", value: "28" },
-    ],
-    links: [
-      {
-        label: "Source",
-        href: "https://github.com/Abdalla-Eldoumani/islam-extension",
-      },
-      {
-        label: "Chrome Web Store",
-        href: "https://chromewebstore.google.com/detail/quran-sunnah-companion/okkohadnmodfaienacdlfaledjblcbka",
-      },
-    ],
-  },
-  {
-    id: "salaat-widget",
-    title: "Salaat Widget",
-    subtitle: "A desktop prayer-times widget that docks to screen edges",
-    description:
-      "A desktop prayer-times widget for Windows, macOS and Linux, built with Tauri 2 and React. It shows the six daily times in English and Arabic, highlights the current prayer and counts down to the next. Drag it to a screen edge and it docks as a horizontal bar, a vertical sidebar or a compact floating window. The Rust side plays the adhan and sends system notifications, so both work while the window is hidden. Installers are published on GitHub Releases.",
-    features: [
-      "12 calculation methods through the adhan library",
-      "Six adhan recordings: Makkah, Madinah, Al-Aqsa, Abdul Basit, Minshawi and Egypt, with per-prayer muting",
-      "Docking within 40 px of a screen edge, with three layouts that switch automatically",
-      "131 bundled cities, with IP geolocation as the automatic option",
-      "The adhan plays from Rust on its own audio thread, and the widget stays in the system tray",
-      "The Windows installer is about 5 MB",
-    ],
-    techStack: ["Tauri 2", "Rust", "React", "TypeScript", "Tailwind CSS", "adhan"],
-    category: "tools",
-    categoryLabel: "Tools · Desktop",
-    stats: [
-      { label: "Methods", value: "12" },
-      { label: "Cities", value: "131" },
-      { label: "Platforms", value: "3" },
-    ],
-    links: [
-      {
-        label: "Source",
-        href: "https://github.com/Abdalla-Eldoumani/salaat-widget",
-      },
-      {
-        label: "Download",
-        href: "https://github.com/Abdalla-Eldoumani/salaat-widget/releases/latest",
+        label: "GitHub",
+        href: "https://github.com/Abdalla-Eldoumani/maqra",
       },
     ],
   },
