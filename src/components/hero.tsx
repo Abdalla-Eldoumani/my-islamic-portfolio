@@ -3,6 +3,7 @@ import { Contents } from "./contents";
 export function Hero() {
   return (
     <section aria-labelledby="title" className="wrap pb-14 pt-4 sm:pt-8 lg:pb-16">
+      {/* Quran.com text_imlaei_simple for 1:1, byte for byte. */}
       <p className="basmala" lang="ar" dir="rtl">
         ﴿ بسم الله الرحمن الرحيم ﴾
       </p>
