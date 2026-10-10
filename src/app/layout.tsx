@@ -1,31 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans, Amiri } from "next/font/google";
+import {
+  Aref_Ruqaa,
+  Instrument_Sans,
+  Instrument_Serif,
+  Scheherazade_New,
+} from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
   display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-jakarta",
+  variable: "--font-instrument-sans",
   display: "swap",
 });
 
-const amiri = Amiri({
+const arefRuqaa = Aref_Ruqaa({
   subsets: ["arabic", "latin"],
   weight: ["400", "700"],
-  variable: "--font-amiri",
+  variable: "--font-aref-ruqaa",
+  display: "swap",
+});
+
+const scheherazade = Scheherazade_New({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-scheherazade",
   display: "swap",
 });
 
 const title = "Abdalla Eldoumani | Islamic Software Portfolio";
 const description =
-  "Open-source Islamic projects by Abdalla Eldoumani: Qur'an videos, Tajweed lessons, the Prophet's life, the 99 Names of Allah, guidance for new Muslims, a browser extension and a prayer-times widget.";
+  "Open-source Islamic projects by Abdalla Eldoumani: guidance for new Muslims, Tajweed lessons, the Prophet's life, the 99 Names of Allah, a browser extension, a prayer-times widget, Qur'an verse videos and an audio mirror of verse-by-verse recitations.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://my-islamic-portfolio.vercel.app"),
@@ -57,8 +69,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: "light dark",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5eedd" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0f1c" },
+    { media: "(prefers-color-scheme: light)", color: "#e4e5e2" },
+    { media: "(prefers-color-scheme: dark)", color: "#161716" },
   ],
 };
 
@@ -70,9 +82,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${jakarta.variable} ${amiri.variable}`}
+      className={`${instrumentSerif.variable} ${instrumentSans.variable} ${arefRuqaa.variable} ${scheherazade.variable}`}
     >
-      <body className="min-h-screen bg-bg-primary font-body text-text-primary">
+      <body className="min-h-screen bg-ground font-body text-ink">
         {children}
       </body>
     </html>
