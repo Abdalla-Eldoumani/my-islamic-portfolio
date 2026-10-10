@@ -188,7 +188,7 @@ export const projects: Project[] = [
     facts: [
       { value: "12", label: "calculation methods" },
       { value: "131", label: "bundled cities, as an alternative to an IP lookup" },
-      { value: "5.3 MB", label: "Windows installer" },
+      { value: "5.4 MB", label: "Windows installer" },
     ],
     sources:
       "Times are calculated on the device with the adhan library. The six adhan recordings come from PrayTimes.org, which publishes them without a licence, so they sit outside the project's MIT licence.",
