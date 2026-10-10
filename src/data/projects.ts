@@ -164,7 +164,7 @@ export const projects: Project[] = [
       src: "/projects/extension.webp",
       width: 1440,
       height: 900,
-      alt: "Four states of the extension's popup: playing a surah in English, playing in Arabic with a dark theme, a reciter search, and the dhikr reminder window in both languages.",
+      alt: "Four states of the extension's popup: a surah chosen in English, the same in Arabic with the dark theme, the surah search, and the dhikr reminder window in both languages.",
       caption: "Popup states, from the extension's own screenshots",
     },
     links: [
