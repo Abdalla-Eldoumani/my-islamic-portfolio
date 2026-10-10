@@ -37,7 +37,7 @@ const scheherazade = Scheherazade_New({
 
 const title = "Abdalla Eldoumani | Islamic Software Portfolio";
 const description =
-  "Open-source Islamic projects by Abdalla Eldoumani: guidance for new Muslims, Tajweed lessons, the Prophet's life, the 99 Names of Allah, a browser extension, a prayer-times widget, Qur'an verse videos and an audio mirror of verse-by-verse recitations.";
+  "Open-source Islamic projects by Abdalla Eldoumani: guidance for new Muslims, Tajweed lessons, the Prophet's life, the 99 Names of Allah, a browser extension, a prayer-times widget, an app that takes the music out of audio and video, Qur'an verse videos and an audio mirror of verse-by-verse recitations.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://my-islamic-portfolio.vercel.app"),
